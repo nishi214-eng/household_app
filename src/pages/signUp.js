@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { auth } from "../infra/firebase";
 import { createUserWithEmailAndPassword,sendEmailVerification } from "firebase/auth";
+import { sweetAlert } from "../features/alert";
 
 export default function SignUp(){
     // 各入力の状態変数
@@ -33,13 +34,13 @@ export default function SignUp(){
             };
             //ユーザ登録の確認メールを送信
                 sendEmailVerification(userCredential.user, actionCodeSettings);
-                console.log(
-                    mail +
-                    "  宛てに確認メールを送信しました。メールボックスを確認してください。"
+                sweetAlert(
+                    "success",
+                    `${mail}宛てに確認メールを送信しました。メールボックスを確認してください。`
                 );
 
         } catch (error) {
-            console.error('アカウント作成に失敗しました', error.message);
+            sweetAlert('error','アカウント作成に失敗しました');
         }
     }
     

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { auth } from "../infra/firebase";
 import { signInWithEmailAndPassword,sendEmailVerification } from "firebase/auth";
+import { sweetAlert } from "../features/alert";
 
 export default function SignIn(){
     // 各入力の状態変数
@@ -29,7 +30,6 @@ export default function SignIn(){
                 if(auth.currentUser.emailVerified){
                     console.log("メアド認証済")
                 }else{
-                    console.log("メアド認証してね")
                     // 確認メール内リンクのリダイレクト先のURLを設定
                     const actionCodeSettings = {
                         url: "http://localhost:3000/", // リダイレクト先のURL。本番環境では変更する
@@ -37,10 +37,7 @@ export default function SignIn(){
                     };
                     //ユーザ登録の確認メールを送信
                     sendEmailVerification(user, actionCodeSettings);
-                    console.log(
-                        mail +
-                        "  宛てに確認メールを送信しました。メールボックスを確認してください。"
-                    );
+                    sweetAlert("error","メールアドレスを認証してください")
                 }
 
             })
