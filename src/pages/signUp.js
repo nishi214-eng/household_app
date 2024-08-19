@@ -46,7 +46,7 @@ export default function SignUp(){
     
     
     return(
-        <div className="wrapper_signInForm">
+        <div className="wrapper_signUpForm">
             <form id="form" onSubmit={handleSubmit}>
                 <label>
                     ユーザーネーム 
