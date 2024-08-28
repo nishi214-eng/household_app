@@ -2,6 +2,8 @@ import { useState } from "react";
 import { auth } from "../infra/firebase";
 import { createUserWithEmailAndPassword,sendEmailVerification } from "firebase/auth";
 import { sweetAlert } from "../features/alert";
+import { Button,TextField } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export default function SignUp(){
     // 各入力の状態変数
@@ -48,20 +50,14 @@ export default function SignUp(){
     return(
         <div className="wrapper_signUpForm">
             <form id="form" onSubmit={handleSubmit}>
-                <label>
-                    ユーザーネーム 
-                    <input name="userName" value={userName} onChange={onChangeUserName} />
-                </label>
-                <label>
-                    メールアドレス 
-                    <input name="mailAddress" value={mail} onChange={onChangeMail} />
-                </label>
-                <label>
-                    パスワード 
-                    <input name="passWord" value={password} onChange={onChangePassword} />
-                </label>
-                <button type="submit">送信</button>
+                <TextField name="userName" label="ユーザーネーム" variant="outlined" value={userName} onChange={onChangeUserName}/>
+                <TextField name="mailAddress" label="メールアドレス" variant="outlined" value={mail} onChange={onChangeMail}/>
+                <TextField name="passWord" label="パスワード" variant="outlined" value={password} onChange={onChangePassword}/>
+                <Button type="submit" label="送信" variant="contained">送信</Button>
             </form>
+            <div className="link_item">
+                <Link to={"/"}>サインインする</Link>
+            </div>
         </div>
     )
 }
