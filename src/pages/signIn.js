@@ -5,6 +5,7 @@ import { sweetAlert } from "../features/alert";
 import { Button,TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 import GoogleSignIn from "../components/googleSignIn";
+import "../css/signIn.css"
 
 export default function SignIn(){
     // 各入力の状態変数
